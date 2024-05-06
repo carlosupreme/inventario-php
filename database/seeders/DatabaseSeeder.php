@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categoria;
+use App\Models\Producto;
 use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,5 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         User::factory(10)->create()->each->syncRoles(Role::pluck('id')->toArray());
+        Categoria::factory(15)->create();
+        Producto::factory(100)->create();
     }
 }
