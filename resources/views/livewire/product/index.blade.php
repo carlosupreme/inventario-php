@@ -3,7 +3,7 @@
         <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
             <div
                 class="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
-                <div class="flex items-center flex-1 space-x-4">
+                <div class="min-w-fit flex items-center flex-1 space-x-4">
                     <h5>
                         <span class="text-gray-500">Productos:</span>
                         <span class="dark:text-white">{{$total}}</span>
@@ -12,6 +12,19 @@
                         <span class="text-gray-500">Total ventas:</span>
                         <span class="dark:text-white">$88.4k</span>
                     </h5>
+                </div>
+                <div class="relative w-full">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <x-untitledui-search-refraction class="w-4 h-4 text-gray-500 dark:text-gray-400"/>
+                    </div>
+                    <input
+                        type="search"
+                        id="search"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Buscar por nombre"
+                        wire:model.live="search"
+                        required
+                    />
                 </div>
                 <div
                     class="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
@@ -133,6 +146,7 @@
             {!! $productos->links() !!}
         </div>
     </div>
+
     @livewire('delete-modal', [
     'modalId' => 'deleteProductoModal',
     'action' => 'deleteProducto',

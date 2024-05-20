@@ -13,6 +13,8 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
     public function confirmDelete($id)
     {
         $this->dispatch('selectItem', $id)->to(DeleteModal::class);
@@ -23,7 +25,7 @@ class Index extends Component
     {
         $p = Producto::find($id);
 
-        if($p->foto){
+        if ($p->foto) {
             Storage::delete(str_replace("/storage/", "", $p->foto));
         }
 
@@ -35,11 +37,13 @@ class Index extends Component
     #[On('actionCompleted')]
     public function render()
     {
-        return view('livewire.product.index', [
-            'total' => Producto::count(),
-            'productos' => Producto::with('categoria')
-                ->latest('created_at')
-                ->paginate(10)
-        ]);
+        $productos = Producto::where('nombre', 'LIKE', "%$this->search%")
+            ->with('categoria')
+            ->latest('created_at')
+            ->paginate(10);
+
+        $total = Producto::count();
+
+        return view('livewire.product.index', compact('total', 'productos'));
     }
 }
