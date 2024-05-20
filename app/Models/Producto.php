@@ -29,4 +29,9 @@ class Producto extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    public function tickets()
+    {
+        return $this->belongsToMany(Ticket::class)->withPivot('cantidad')->withTimestamps();
+    }
 }

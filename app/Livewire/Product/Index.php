@@ -15,6 +15,8 @@ class Index extends Component
 
     public $search = '';
 
+    protected $queryString = ['search' => ['except' => '', 'as' => 's']];
+
     public function confirmDelete($id)
     {
         $this->dispatch('selectItem', $id)->to(DeleteModal::class);
@@ -37,7 +39,7 @@ class Index extends Component
     #[On('actionCompleted')]
     public function render()
     {
-        $productos = Producto::where('nombre', 'LIKE', "%$this->search%")
+        $productos = Producto::matching($this->search, 'nombre', 'codigo_barras', 'descripcion')
             ->with('categoria')
             ->latest('created_at')
             ->paginate(10);
