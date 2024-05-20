@@ -2,37 +2,33 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class DeleteModal extends Component
 {
-
     public $modalId;
     public $identifier;
-    public $open;
+    public $open = false;
     public $action;
     public $title;
     public $content;
     public $actionName;
 
-    protected $listeners = ['selectItem', 'actionCompleted'];
-
-    public function mount(){
-        $this->open = false;
-    }
-
-    public function selectItem($identifier)
+    #[On('selectItem')]
+    public function selectItem($identifier): void
     {
         $this->identifier = $identifier;
         $this->open = true;
     }
 
-    public function confirm()
+    public function confirm(): void
     {
         $this->dispatch($this->action, $this->identifier);
     }
 
-    public function actionCompleted()
+    #[On('actionCompleted')]
+    public function actionCompleted(): void
     {
         $this->open = false;
     }
