@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo_barras')->unique();
-            $table->foreignId('categoria_id')->constrained();
+            $table->string('codigo_barras');
+            $table->foreignId('categoria_id')->nullable()->constrained()->nullOnDelete();
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->decimal('costo', 10)->nullable();
-            $table->decimal('precio', 10);
+            $table->decimal('precio', 10)->nullable();
             $table->decimal('precio_mayoreo', 10)->nullable();
             $table->integer('cantidad_mayoreo')->nullable();
-            $table->string('unidad_medida');
-            $table->integer('stock_minimo');
-            $table->integer('stock_tienda');
-            $table->integer('stock_bodega');
+            $table->string('unidad_medida')->nullable();
+            $table->integer('stock_minimo')->nullable();
+            $table->integer('stock_tienda')->nullable();
+            $table->integer('stock_bodega')->nullable();
             $table->string('foto')->nullable();
             $table->timestamps();
         });

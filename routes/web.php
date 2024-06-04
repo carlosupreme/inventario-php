@@ -15,7 +15,7 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return redirect()->route('ventas.index');
     })->name('dashboard');
 
     Route::get('/usuarios', static fn() => view('user.index'))

@@ -18,16 +18,16 @@
                         <x-untitledui-search-refraction class="w-4 h-4 text-gray-500 dark:text-gray-400"/>
                     </div>
                     <input
-                        type="search"
-                        id="search"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Buscar por nombre, codigo de barras o descripcion..."
-                        wire:model.live="search"
-                        required
+                            type="search"
+                            id="search"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Buscar por nombre, codigo de barras o descripcion..."
+                            wire:model.live="search"
+                            required
                     />
                 </div>
                 <div
-                    class="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
+                        class="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
                     <a href="{{route('product.create')}}"
                        class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
@@ -45,7 +45,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
                         </svg>
-                        Exportar
+                        Importar
                     </button>
                 </div>
             </div>
@@ -57,11 +57,6 @@
                         <th scope="col" class="px-4 py-3">Categoria</th>
                         <th scope="col" class="px-4 py-3">Existencia/Tienda</th>
                         <th scope="col" class="px-4 py-3">Existencia/Bodega</th>
-                        <th scope="col" class="px-4 py-3">Ventas/Dia</th>
-                        <th scope="col" class="px-4 py-3">Ventas/Mes</th>
-                        <th scope="col" class="px-4 py-3">Ventas</th>
-                        <th scope="col" class="px-4 py-3">Ganancia</th>
-                        <th scope="col" class="px-4 py-3">Ultima modif.</th>
                         <th scope="col" class="px-4 py-3">Acciones</th>
                     </tr>
                     </thead>
@@ -73,15 +68,15 @@
                                 class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 @if($producto->foto)
                                     <img
-                                        src="{{$producto->foto}}"
-                                        alt="{{$producto->nombre}}" class="w-auto h-8 mr-3">
+                                            src="{{$producto->foto}}"
+                                            alt="{{$producto->nombre}}" class="w-auto h-8 mr-3">
                                 @endif
                                 {{$producto->nombre}}
                             </th>
                             <td class="px-4 py-2">
                             <span
-                                class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
-                                {{$producto->categoria->nombre}}
+                                    class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
+                                {{$producto->categoria? $producto->categoria->nombre : 'Sin categoria'}}
                             </span>
                             </td>
                             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -107,23 +102,9 @@
                                         'bg-red-700' => $producto->stock_bodega <= 2,
                                         ])
                                     ></div>
-                                    {{$producto->stock_bodega}}
+                                    {{$producto->stock_bodega ?: 0}}
                                 </div>
                             </td>
-                            <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">1.47</td>
-                            <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">0.47</td>
-                            <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <div class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="currentColor"
-                                         class="w-5 h-5 mr-2 text-gray-400" aria-hidden="true">
-                                        <path
-                                            d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"/>
-                                    </svg>
-                                    1.6M
-                                </div>
-                            </td>
-                            <td class="px-4 py-2">$3.2M</td>
-                            <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$producto->updated_at->diffForHumans()}}</td>
                             <td class="px-4 py-3 flex items-center justify-center">
                                 <a href="{{route('product.edit', $producto->id)}}"
                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
@@ -131,8 +112,8 @@
                                     <x-untitledui-edit-04 class="w-5 h-5"/>
                                 </a>
                                 <button
-                                    wire:click="confirmDelete({{$producto->id}})"
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
+                                        wire:click="confirmDelete({{$producto->id}})"
+                                        class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
                                 >
                                     <x-untitledui-trash class="w-5 h-5"/>
                                 </button>
