@@ -56,7 +56,7 @@
                         <th scope="col" class="px-4 py-3">Producto</th>
                         <th scope="col" class="px-4 py-3">Categoria</th>
                         <th scope="col" class="px-4 py-3">Existencia/Tienda</th>
-                        <th scope="col" class="px-4 py-3">Existencia/Bodega</th>
+                        <th scope="col" class="px-4 py-3">Precio</th>
                         <th scope="col" class="px-4 py-3">Acciones</th>
                     </tr>
                     </thead>
@@ -93,19 +93,9 @@
                                 </div>
                             </td>
                             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <div class="flex items-center">
-                                    <div @class([
-                                        'inline-block w-4 h-4 mr-2 rounded-full',
-                                        'bg-green-400' => $producto->stock_bodega >= 10,
-                                        'bg-yellow-400' => $producto->stock_bodega < 10 && $producto->stock_bodega > 5,
-                                        'bg-red-400' => $producto->stock_bodega <= 5 && $producto->stock_bodega > 2,
-                                        'bg-red-700' => $producto->stock_bodega <= 2,
-                                        ])
-                                    ></div>
-                                    {{$producto->stock_bodega ?: 0}}
-                                </div>
+                                  $ {{$producto->precio}}
                             </td>
-                            <td class="px-4 py-3 flex items-center justify-center">
+                            <td class="px-4 py-3 flex items-center ">
                                 <a href="{{route('product.edit', $producto->id)}}"
                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
                                 >
@@ -119,7 +109,6 @@
                                 </button>
                             </td>
                         </tr>
-
                     @endforeach
                     </tbody>
                 </table>

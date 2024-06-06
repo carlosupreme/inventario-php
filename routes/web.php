@@ -26,6 +26,8 @@ Route::middleware([
         'user' => User::with('roles')->select(['id', 'name', 'email', 'profile_photo_path'])->findOrFail($user)
     ]))->name('user.show');
 
+    Route::get('/categorias', static fn() => view('categoria.index'))->name('categoria.index');
+
 
     Route::get('/productos', function () {
         return view('product.index');
