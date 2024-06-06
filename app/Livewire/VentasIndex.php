@@ -11,6 +11,10 @@ class VentasIndex extends Component
 {
     use WithPagination;
 
+    public function edit($id)
+    {
+        $this->dispatch('editTicket', $id);
+    }
     #[On('ticketCreated')]
     public function render()
     {

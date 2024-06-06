@@ -40,18 +40,14 @@
                             <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{$ticket->user->name}}
                             </td>
-                            <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{$ticket->total}}</td>
+                            <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">$ {{$ticket->total}}</td>
                             <td class="px-4 py-3 flex gap-3">
-                                <a href="{{route('product.edit', $ticket->id)}}"
+                                <button wire:click="edit({{$ticket->id}})"
                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
                                 >
-                                    <x-untitledui-edit-04 class="w-5 h-5"/>
-                                </a>
-                                <button
-                                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
-                                >
-                                    <x-untitledui-trash class="w-5 h-5"/>
+                                    <x-far-eye class="w-5 h-5"/>
                                 </button>
+
                             </td>
                         </tr>
 
@@ -62,4 +58,5 @@
             {!! $tickets->links() !!}
         </div>
     </div>
+    @livewire('ticket-edit')
 </section>

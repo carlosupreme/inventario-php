@@ -34,12 +34,16 @@ class VentasCreate extends Component
     public function buscar()
     {
         $this->validate();
-        $this->producto = Producto::where('codigo_barras', $this->busqueda)->first();
-
+        $this->producto = Producto::where('codigo_barras', 'like', "%{$this->busqueda}%")->first();
+        debug($this->producto);
     }
 
     public function cobrar()
     {
+        if(!$this->productos) {
+            return;
+        }
+
         $ticket = Ticket::create([
             'total' => $this->total,
             'user_id' => Auth::user()->id

@@ -19,7 +19,7 @@
                         <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{$producto->nombre}}</h5>
                         <div class="flex items-center gap-2 mt-2.5 mb-5">
                             <span
-                                class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">{{$producto->categoria->nombre}}</span>
+                                class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">{{$producto->categoria?->nombre}}</span>
                             <span
                                 class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-800">{{$producto->stock_tienda}} disponibles</span>
                         </div>

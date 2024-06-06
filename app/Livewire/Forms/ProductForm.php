@@ -26,22 +26,22 @@ class ProductForm extends Form
     public $descripcion = '';
     public $costo;
 
-    #[Validate('required|numeric|min:0.01')]
+    #[Validate('numeric|min:0.01')]
     public $precio;
 
     public $precio_mayoreo;
     public $cantidad_mayoreo;
 
-    #[Validate('required|string|max:255|min:1')]
+    #[Validate('string|max:255|min:1')]
     public $unidad_medida = '';
 
-    #[Validate('required|integer|min:1')]
+    #[Validate('integer|min:1')]
     public $stock_minimo;
 
-    #[Validate('required|integer|min:1')]
+    #[Validate('integer|min:1')]
     public $stock_tienda;
 
-    #[Validate('required|integer|min:1')]
+    #[Validate('integer|min:1')]
     public $stock_bodega;
 
     #[Validate('nullable|image')]
@@ -53,11 +53,11 @@ class ProductForm extends Form
             'nombre' => 'required|string|max:255|min:3',
             'codigo_barras' => ['required'],
             'categoria_id' => 'required|exists:categorias,id',
-            'precio' => 'required|numeric|min:0.01',
-            'unidad_medida' => 'required|string|max:255|min:1',
-            'stock_minimo' => 'required|integer|min:1',
-            'stock_tienda' => 'required|integer|min:1',
-            'stock_bodega' => 'required|integer|min:1',
+            'precio' => 'required|min:0.01',
+            'unidad_medida' => 'nullable|string|max:255|min:1',
+            'stock_minimo' => 'nullable|integer|min:1',
+            'stock_tienda' => 'nullable|integer|min:1',
+            'stock_bodega' => 'integer|nullable|min:1',
             'foto' => 'nullable|image'
         ];
     }
